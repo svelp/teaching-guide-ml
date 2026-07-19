@@ -28,3 +28,18 @@ canvas {
     width: 100%;
     height: auto;
 }
+
+.page {
+    position: relative;
+}
+
+.hotspot {
+    position: absolute;
+    cursor: pointer;
+    background: transparent;
+}
+
+.debug {
+    border: 2px dashed red;
+    background: rgba(255, 0, 0, .15);
+}
