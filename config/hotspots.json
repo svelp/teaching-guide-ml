@@ -36,6 +36,35 @@
                     "audio": "../config/audio/singing.mp3"
                 }
             ]
+        },
+        {
+            "page": 4,
+            "hotspots": [
+                {
+                    "id": "guitar",
+                    "x": 0.06,
+                    "y": 0.29,
+                    "width": 0.37,
+                    "height": 0.25,
+                    "audio": "../config/audio/guitar.mp3"
+                },
+                {
+                    "id": "tambor",
+                    "x": 0.59,
+                    "y": 0.26,
+                    "width": 0.35,
+                    "height": 0.25,
+                    "audio": "../config/audio/tambor.mp3"
+                },
+                {
+                    "id": "talk",
+                    "x": 0.38,
+                    "y": 0.59,
+                    "width": 0.35,
+                    "height": 0.24,
+                    "audio": "../config/audio/talk.mp3"
+                }
+            ]
         }
     ]
 }
