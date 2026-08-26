@@ -248,6 +248,52 @@ canvas {
     cursor: pointer;
 }
 
+/* Loader overlay shown while a PDF page is rendering */
+.page-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,250,252,0.6));
+    backdrop-filter: blur(6px) saturate(120%);
+    z-index: 6;
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.page-loader .spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary), var(--secondary), var(--accent), var(--primary));
+    animation: spin 1.1s linear infinite;
+    box-shadow: 0 8px 20px rgba(49,94,245,0.18), inset 0 2px 8px rgba(255,255,255,0.18);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.page.rendered .page-loader {
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+}
+
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
 @media (max-width: 768px) {
     .hero {
         min-height: 260px;

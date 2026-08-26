@@ -71,7 +71,6 @@ async function renderPDF() {
         pageDiv.className = "page";
         pageDiv.style.aspectRatio =
             `${viewport.width}/${viewport.height}`;
-
         const canvas = document.createElement("canvas");
 
         canvas.width = viewport.width;
@@ -79,12 +78,24 @@ async function renderPDF() {
 
         const context = canvas.getContext("2d");
 
+        // Loader overlay shown while the page is being rendered
+        const loader = document.createElement("div");
+        loader.className = "page-loader";
+        loader.innerHTML = '<div class="spinner" aria-hidden="true"></div>' +
+            `<span class="sr-only">Cargando página ${pageNumber}</span>`;
+
+        pageDiv.appendChild(loader);
         pageDiv.appendChild(canvas);
         container.appendChild(pageDiv);
+
+        // Render page into canvas and hide loader when done
         await page.render({
             canvasContext: context,
             viewport
         }).promise;
+
+        if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+        pageDiv.classList.add('rendered');
         createHotspots(pageDiv, pageNumber);
     }
 }
