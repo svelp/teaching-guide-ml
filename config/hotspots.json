@@ -65,6 +65,96 @@
                     "audio": "../config/audio/talk.mp3"
                 }
             ]
+        },
+        {
+            "page": 6,
+            "hotspots": [
+                {
+                    "id": "ocean",
+                    "x": 0.06,
+                    "y": 0.53,
+                    "width": 0.20,
+                    "height": 0.16,
+                    "audio": "../config/audio/ocean.mp3"
+                },
+                {
+                    "id": "birds",
+                    "x": 0.40,
+                    "y": 0.45,
+                    "width": 0.20,
+                    "height": 0.16,
+                    "audio": "../config/audio/birds.mp3"
+                },
+                {
+                    "id": "piano",
+                    "x": 0.70,
+                    "y": 0.45,
+                    "width": 0.20,
+                    "height": 0.16,
+                    "audio": "../config/audio/piano.mp3"
+                },
+                {
+                    "id": "song",
+                    "x": 0.45,
+                    "y": 0.67,
+                    "width": 0.12,
+                    "height": 0.15,
+                    "audio": "../config/audio/song.mp3"
+                }
+            ]
+        },
+        {
+            "page": 7,
+            "hotspots": [
+                {
+                    "id": "screaming",
+                    "x": 0.03,
+                    "y": 0.33,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/screaming.mp3"
+                },
+                {
+                    "id": "construction",
+                    "x": 0.38,
+                    "y": 0.34,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/construction.mp3"
+                },
+                {
+                    "id": "car",
+                    "x": 0.71,
+                    "y": 0.31,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/car.mp3"
+                },
+                {
+                    "id": "drill",
+                    "x": 0.03,
+                    "y": 0.55,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/drill.mp3"
+                },
+                {
+                    "id": "town",
+                    "x": 0.38,
+                    "y": 0.55,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/town.mp3"
+                },
+                {
+                    "id": "ambulance",
+                    "x": 0.72,
+                    "y": 0.49,
+                    "width": 0.18,
+                    "height": 0.14,
+                    "audio": "../config/audio/ambulance.mp3"
+                }
+            ]
         }
     ]
 }
