@@ -1,4 +1,9 @@
 {
+    "hotspotStyle": {
+        "visible": true,
+        "border": "2px dashed #ff3c3c",
+        "background": "rgba(255, 0, 0, 0.15)"
+    },
     "pages": [
         {
             "page": 3,
@@ -141,7 +146,7 @@
                 {
                     "id": "town",
                     "x": 0.38,
-                    "y": 0.55,
+                    "y": 0.51,
                     "width": 0.22,
                     "height": 0.16,
                     "audio": "../config/audio/town.mp3"

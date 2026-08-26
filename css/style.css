@@ -248,11 +248,6 @@ canvas {
     cursor: pointer;
 }
 
-.debug {
-    border: 2px dashed #ff3c3c;
-    background: rgba(255, 0, 0, 0.15);
-}
-
 @media (max-width: 768px) {
     .hero {
         min-height: 260px;

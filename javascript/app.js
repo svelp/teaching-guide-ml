@@ -6,28 +6,41 @@ const container = document.getElementById("pdf-content");
 
 let hotspotsConfig = null;
 
+const defaultHotspotStyle = {
+    visible: false,
+    border: "2px dashed #ff3c3c",
+    background: "rgba(255, 0, 0, 0.15)"
+};
+
 const audioPlayer = {
 
     current: null,
 
     play(src) {
         if (this.current) {
+            this.current.onended = null;
             this.current.pause();
             this.current.currentTime = 0;
         }
 
-        this.current = new Audio(src);
-        this.current.play().catch(err => {
+        const nextAudio = new Audio(src);
+        this.current = nextAudio;
+
+        nextAudio.play().catch(err => {
+            if (err?.name === "AbortError") return;
             console.error("Error playing audio:", err);
         });
 
-        this.current.onended = () => {
-            this.current = null;
+        nextAudio.onended = () => {
+            if (this.current === nextAudio) {
+                this.current = null;
+            }
         };
     },
 
     stop() {
         if (!this.current) return;
+        this.current.onended = null;
         this.current.pause();
         this.current.currentTime = 0;
         this.current = null;
@@ -78,17 +91,22 @@ async function renderPDF() {
 
 function createHotspots(pageDiv, pageNumber) {
     const pageInfo = hotspotsConfig.pages.find(p => p.page === pageNumber);
+    const hotspotStyle = {
+        ...defaultHotspotStyle,
+        ...(hotspotsConfig.hotspotStyle || {})
+    };
 
     if (!pageInfo) return;
     pageInfo.hotspots.forEach(h => {
         const zone = document.createElement("div");
 
         zone.className = "hotspot";
-        zone.classList.add("debug");
         zone.style.left = (h.x * 100) + "%";
         zone.style.top = (h.y * 100) + "%";
         zone.style.width = (h.width * 100) + "%";
         zone.style.height = (h.height * 100) + "%";
+        zone.style.border = hotspotStyle.visible ? hotspotStyle.border : "none";
+        zone.style.background = hotspotStyle.visible ? hotspotStyle.background : "transparent";
         zone.addEventListener("click", () => {
             audioPlayer.play(h.audio);
         });
