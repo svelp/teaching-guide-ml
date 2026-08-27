@@ -160,6 +160,43 @@
                     "audio": "../config/audio/ambulance.mp3"
                 }
             ]
+        },
+        {
+            "page": 26,
+            "hotspots": [
+                {
+                    "id": "lion",
+                    "x": 0.70,
+                    "y": 0.56,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/lion.mp3"
+                },
+                {
+                    "id": "man-talking",
+                    "x": 0.06,
+                    "y": 0.82,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/man-talkin.mp3"
+                },
+                {
+                    "id": "truck",
+                    "x": 0.40,
+                    "y": 0.77,
+                    "width": 0.25,
+                    "height": 0.16,
+                    "audio": "../config/audio/truck.mp3"
+                },
+                 {
+                    "id": "tambor",
+                    "x": 0.71,
+                    "y": 0.77,
+                    "width": 0.25,
+                    "height": 0.16,
+                    "audio": "../config/audio/tambor.mp3"
+                }
+            ]
         }
     ]
 }
