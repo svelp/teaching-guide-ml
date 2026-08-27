@@ -188,13 +188,26 @@
                     "height": 0.16,
                     "audio": "../config/audio/truck.mp3"
                 },
-                 {
+                {
                     "id": "tambor",
                     "x": 0.71,
                     "y": 0.77,
                     "width": 0.25,
                     "height": 0.16,
                     "audio": "../config/audio/tambor.mp3"
+                }
+            ]
+        },
+        {
+            "page": 27,
+            "hotspots": [
+                {
+                    "id": "birds",
+                    "x": 0.05,
+                    "y": 0.42,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/birds.mp3"
                 }
             ]
         }
