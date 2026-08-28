@@ -208,6 +208,38 @@
                     "width": 0.22,
                     "height": 0.16,
                     "audio": "../config/audio/birds.mp3"
+                },
+                {
+                    "id": "rat",
+                    "x": 0.38,
+                    "y": 0.54,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/rat.mp3"
+                },
+                {
+                    "id": "baby",
+                    "x": 0.70,
+                    "y": 0.41,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/baby.mp3"
+                },
+                {
+                    "id": "bells",
+                    "x": 0.09,
+                    "y": 0.67,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/bells.mp3"
+                },
+                {
+                    "id": "violin",
+                    "x": 0.75,
+                    "y": 0.72,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/violin.mp3"
                 }
             ]
         }
