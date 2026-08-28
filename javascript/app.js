@@ -4,12 +4,16 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 const pdfUrl = "../config/guide.pdf";
 const pdfRequestUrl = `${pdfUrl}?v=${Date.now()}`;
 const container = document.getElementById("pdf-content");
+const pageJumpForm = document.getElementById("page-jump-form");
+const pageJumpInput = document.getElementById("page-jump-input");
+const pageJumpStatus = document.getElementById("page-jump-status");
 const renderScale = 1;
 
 let hotspotsConfig = null;
 let pdfDocument = null;
 let pageObserver = null;
 let renderQueue = Promise.resolve();
+let activeJumpPage = null;
 const renderedPages = new Set();
 const renderingPages = new Set();
 
@@ -112,6 +116,88 @@ async function renderPDF() {
     Array.from(container.querySelectorAll(".page")).forEach(pageDiv => {
         pageObserver.observe(pageDiv);
     });
+
+    setupPageJumpSelector(pdfDocument.numPages);
+}
+
+function setupPageJumpSelector(totalPages) {
+    if (!pageJumpForm || !pageJumpInput || !pageJumpStatus) {
+        return;
+    }
+
+    const pageJumpButton = pageJumpForm.querySelector("button[type='submit']");
+    if (!pageJumpButton) {
+        return;
+    }
+
+    pageJumpInput.max = String(totalPages);
+    pageJumpInput.disabled = false;
+    pageJumpButton.disabled = false;
+    pageJumpStatus.textContent = `Escribe una página entre 1 y ${totalPages}.`;
+    pageJumpStatus.className = "page-jump-status";
+
+    pageJumpForm.addEventListener("submit", event => {
+        event.preventDefault();
+        const pageNumber = Number.parseInt(pageJumpInput.value, 10);
+        jumpToPage(pageNumber);
+    });
+}
+
+function setPageJumpStatus(message, tone = "") {
+    if (!pageJumpStatus) {
+        return;
+    }
+
+    pageJumpStatus.textContent = message;
+    pageJumpStatus.className = tone ? `page-jump-status ${tone}` : "page-jump-status";
+}
+
+function getPageElement(pageNumber) {
+    return container.querySelector(`.page[data-page-number="${pageNumber}"]`);
+}
+
+function updatePageJumpFeedback(pageNumber) {
+    if (!pageJumpStatus || !pdfDocument) {
+        return;
+    }
+
+    if (renderedPages.has(pageNumber)) {
+        setPageJumpStatus(`La página ${pageNumber} ya está lista.`, "is-success");
+        return;
+    }
+
+    if (renderingPages.has(pageNumber)) {
+        setPageJumpStatus(`La página ${pageNumber} todavía se está cargando.`, "is-warning");
+        return;
+    }
+
+    setPageJumpStatus(`La página ${pageNumber} aún no ha cargado. La estoy preparando.`, "is-warning");
+}
+
+function jumpToPage(pageNumber) {
+    if (!pdfDocument || !Number.isInteger(pageNumber)) {
+        setPageJumpStatus("Escribe un número de página válido.", "is-error");
+        return;
+    }
+
+    if (pageNumber < 1 || pageNumber > pdfDocument.numPages) {
+        setPageJumpStatus(`Elige una página entre 1 y ${pdfDocument.numPages}.`, "is-error");
+        return;
+    }
+
+    const pageDiv = getPageElement(pageNumber);
+    if (!pageDiv) {
+        setPageJumpStatus(`La página ${pageNumber} todavía no está disponible en pantalla.`, "is-warning");
+        return;
+    }
+
+    activeJumpPage = pageNumber;
+    queuePageRender(pageNumber, pageDiv);
+    pageDiv.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+    updatePageJumpFeedback(pageNumber);
 }
 
 function queuePageRender(pageNumber, pageDiv) {
@@ -152,8 +238,14 @@ async function renderPage(pageNumber, pageDiv) {
         pageDiv.classList.add("rendered");
         createHotspots(pageDiv, pageNumber);
         renderedPages.add(pageNumber);
+        if (activeJumpPage === pageNumber) {
+            setPageJumpStatus(`La página ${pageNumber} ya está lista.`, "is-success");
+        }
     } catch (error) {
         console.error(`Error rendering PDF page ${pageNumber}:`, error);
+        if (activeJumpPage === pageNumber) {
+            setPageJumpStatus(`No se pudo cargar la página ${pageNumber}.`, "is-error");
+        }
     } finally {
         renderingPages.delete(pageNumber);
     }

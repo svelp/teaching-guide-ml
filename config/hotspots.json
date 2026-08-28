@@ -242,6 +242,83 @@
                     "audio": "../config/audio/violin.mp3"
                 }
             ]
+        },
+        {
+            "page": 27,
+            "hotspots": [
+                {
+                    "id": "bell",
+                    "x": 0.05,
+                    "y": 0.23,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/bell.mp3"
+                },
+                {
+                    "id": "dog",
+                    "x": 0.36,
+                    "y": 0.23,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/dog.mp3"
+                },
+                {
+                    "id": "bleat",
+                    "x": 0.67,
+                    "y": 0.23,
+                    "width": 0.22,
+                    "height": 0.16,
+                    "audio": "../config/audio/bleat.mp3"
+                },
+                {
+                    "id": "trumpet",
+                    "x": 0.07,
+                    "y": 0.46,
+                    "width": 0.20,
+                    "height": 0.10,
+                    "audio": "../config/audio/trumpet.mp3"
+                },
+                {
+                    "id": "maracas",
+                    "x": 0.36,
+                    "y": 0.44,
+                    "width": 0.15,
+                    "height": 0.10,
+                    "audio": "../config/audio/maracas.mp3"
+                },
+                {
+                    "id": "man-singing",
+                    "x": 0.63,
+                    "y": 0.45,
+                    "width": 0.18,
+                    "height": 0.12,
+                    "audio": "../config/audio/man-singing.mp3"
+                },
+                {
+                    "id": "pop",
+                    "x": 0.10,
+                    "y": 0.70,
+                    "width": 0.10,
+                    "height": 0.16,
+                    "audio": "../config/audio/pop.mp3"
+                },
+                {
+                    "id": "flaute",
+                    "x": 0.28,
+                    "y": 0.70,
+                    "width": 0.20,
+                    "height": 0.16,
+                    "audio": "../config/audio/flaute.mp3"
+                },
+                {
+                    "id": "cow",
+                    "x": 0.75,
+                    "y": 0.70,
+                    "width": 0.20,
+                    "height": 0.16,
+                    "audio": "../config/audio/cow.mp3"
+                }
+            ]
         }
     ]
 }

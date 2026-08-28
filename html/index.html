@@ -31,6 +31,16 @@
             </div>
         </div>
     </header>
+    <aside class="page-jump" aria-label="Ir a una página">
+        <form id="page-jump-form" class="page-jump-form">
+            <label class="page-jump-label" for="page-jump-input">Ir a página</label>
+            <div class="page-jump-row">
+                <input id="page-jump-input" class="page-jump-input" type="number" min="1" step="1" inputmode="numeric" placeholder="1" disabled>
+                <button class="btn btn-primary page-jump-button" type="submit" disabled>Ir</button>
+            </div>
+            <p id="page-jump-status" class="page-jump-status" aria-live="polite">Cargando documento...</p>
+        </form>
+    </aside>
     <main>
         <div id="pdf-content"></div>
     </main>

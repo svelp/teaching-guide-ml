@@ -218,6 +218,88 @@ body {
     backdrop-filter: blur(6px);
 }
 
+.page-jump {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 30;
+    width: min(320px, calc(100vw - 24px));
+    padding: 14px 14px 12px;
+    border: 1px solid rgba(17, 32, 51, 0.12);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: 0 18px 38px rgba(12, 20, 34, 0.16);
+    backdrop-filter: blur(14px) saturate(135%);
+}
+
+.page-jump-form {
+    display: grid;
+    gap: 10px;
+}
+
+.page-jump-label {
+    color: var(--text);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.page-jump-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.page-jump-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 46px;
+    padding: 0 14px;
+    border: 1px solid rgba(18, 32, 51, 0.18);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--text);
+    font: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.page-jump-input:focus {
+    border-color: rgba(90, 121, 184, 0.7);
+    box-shadow: 0 0 0 4px rgba(90, 121, 184, 0.15);
+}
+
+.page-jump-button {
+    flex: 0 0 auto;
+    border: 0;
+    cursor: pointer;
+}
+
+.page-jump-button:disabled,
+.page-jump-input:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.page-jump-status {
+    min-height: 1.25em;
+    color: var(--secondary);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.page-jump-status.is-warning {
+    color: #9b5f00;
+}
+
+.page-jump-status.is-error {
+    color: #b42318;
+}
+
+.page-jump-status.is-success {
+    color: #2f6b4f;
+}
+
 main {
     width: min(100%, 1000px);
     margin: 35px auto;
@@ -298,6 +380,24 @@ canvas {
 }
 
 @media (max-width: 768px) {
+    .page-jump {
+        top: auto;
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        width: auto;
+        padding: 12px;
+        border-radius: 16px;
+    }
+
+    .page-jump-row {
+        flex-direction: column;
+    }
+
+    .page-jump-button {
+        width: 100%;
+    }
+
     .hero {
         min-height: 260px;
         padding: 18px 16px 30px;
