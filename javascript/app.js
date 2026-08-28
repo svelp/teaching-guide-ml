@@ -2,9 +2,16 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 const pdfUrl = "../config/guide.pdf";
+const pdfRequestUrl = `${pdfUrl}?v=${Date.now()}`;
 const container = document.getElementById("pdf-content");
+const renderScale = 1;
 
 let hotspotsConfig = null;
+let pdfDocument = null;
+let pageObserver = null;
+let renderQueue = Promise.resolve();
+const renderedPages = new Set();
+const renderingPages = new Set();
 
 const defaultHotspotStyle = {
     visible: false,
@@ -61,42 +68,94 @@ async function loadHotspots() {
 
 async function renderPDF() {
     await loadHotspots();
-    const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
-    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
-        const page = await pdf.getPage(pageNumber);
-        const viewport = page.getViewport({
-            scale: 1.5
-        });
+    pdfDocument = await pdfjsLib.getDocument(pdfRequestUrl).promise;
+    const pageFragments = document.createDocumentFragment();
+    const firstPage = await pdfDocument.getPage(1);
+    const firstViewport = firstPage.getViewport({
+        scale: renderScale
+    });
+    const pageAspectRatio = `${firstViewport.width}/${firstViewport.height}`;
+    firstPage.cleanup();
+
+    for (let pageNumber = 1; pageNumber <= pdfDocument.numPages; pageNumber++) {
         const pageDiv = document.createElement("div");
         pageDiv.className = "page";
-        pageDiv.style.aspectRatio =
-            `${viewport.width}/${viewport.height}`;
-        const canvas = document.createElement("canvas");
+        pageDiv.dataset.pageNumber = String(pageNumber);
+        pageDiv.style.aspectRatio = pageAspectRatio;
 
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-
-        const context = canvas.getContext("2d");
-
-        // Loader overlay shown while the page is being rendered
         const loader = document.createElement("div");
         loader.className = "page-loader";
         loader.innerHTML = '<div class="spinner" aria-hidden="true"></div>' +
             `<span class="sr-only">Cargando página ${pageNumber}</span>`;
 
         pageDiv.appendChild(loader);
-        pageDiv.appendChild(canvas);
-        container.appendChild(pageDiv);
+        pageFragments.appendChild(pageDiv);
+    }
 
-        // Render page into canvas and hide loader when done
+    container.appendChild(pageFragments);
+
+    if (!pageObserver) {
+        pageObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const pageNumber = Number(entry.target.dataset.pageNumber);
+                    queuePageRender(pageNumber, entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: "1000px 0px",
+            threshold: 0.01
+        });
+    }
+
+    Array.from(container.querySelectorAll(".page")).forEach(pageDiv => {
+        pageObserver.observe(pageDiv);
+    });
+}
+
+function queuePageRender(pageNumber, pageDiv) {
+    if (!pdfDocument || renderedPages.has(pageNumber) || renderingPages.has(pageNumber)) {
+        return;
+    }
+
+    renderingPages.add(pageNumber);
+    renderQueue = renderQueue.then(() => renderPage(pageNumber, pageDiv));
+}
+
+async function renderPage(pageNumber, pageDiv) {
+    try {
+        const page = await pdfDocument.getPage(pageNumber);
+        const viewport = page.getViewport({
+            scale: renderScale
+        });
+        const canvas = document.createElement("canvas");
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        const context = canvas.getContext("2d");
+        const loader = pageDiv.querySelector(".page-loader");
+
+        pageDiv.appendChild(canvas);
+
         await page.render({
             canvasContext: context,
             viewport
         }).promise;
 
-        if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
-        pageDiv.classList.add('rendered');
+        page.cleanup();
+
+        if (loader && loader.parentNode) {
+            loader.parentNode.removeChild(loader);
+        }
+
+        pageDiv.classList.add("rendered");
         createHotspots(pageDiv, pageNumber);
+        renderedPages.add(pageNumber);
+    } catch (error) {
+        console.error(`Error rendering PDF page ${pageNumber}:`, error);
+    } finally {
+        renderingPages.delete(pageNumber);
     }
 }
 
