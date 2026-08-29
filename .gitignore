@@ -1,0 +1,4 @@
+```gitignore
+# Ignorar el PDF de la guía
+/config/guide.pdf
+```

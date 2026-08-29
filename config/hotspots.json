@@ -364,6 +364,51 @@
                     "audio": "../config/audio/volcano.mp3"
                 }
             ]
+        },
+        {
+            "page": 29,
+            "hotspots": [
+                {
+                    "id": "cat",
+                    "x": 0.12,
+                    "y": 0.42,
+                    "width": 0.14,
+                    "height": 0.11,
+                    "audio": "../config/audio/cat.mp3"
+                },
+                {
+                    "id": "music-box",
+                    "x": 0.43,
+                    "y": 0.41,
+                    "width": 0.14,
+                    "height": 0.11,
+                    "audio": "../config/audio/music-box.mp3"
+                },
+                {
+                    "id": "pen",
+                    "x": 0.72,
+                    "y": 0.38,
+                    "width": 0.15,
+                    "height": 0.13,
+                    "audio": "../config/audio/pen.mp3"
+                },
+                {
+                    "id": "whispers",
+                    "x": 0.18,
+                    "y": 0.63,
+                    "width": 0.18,
+                    "height": 0.15,
+                    "audio": "../config/audio/whispers.mp3"
+                },
+                {
+                    "id": "pigeon-walking",
+                    "x": 0.58,
+                    "y": 0.65,
+                    "width": 0.18,
+                    "height": 0.15,
+                    "audio": "../config/audio/pigeon-walking.mp3"
+                }
+            ]
         }
     ]
 }
