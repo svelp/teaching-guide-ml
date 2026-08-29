@@ -311,12 +311,57 @@
                     "audio": "../config/audio/flaute.mp3"
                 },
                 {
+                    "id": "volcano",
+                    "x": 0.52,
+                    "y": 0.69,
+                    "width": 0.21,
+                    "height": 0.15,
+                    "audio": "../config/audio/volcano.mp3"
+                },
+                {
                     "id": "cow",
                     "x": 0.75,
                     "y": 0.70,
                     "width": 0.20,
                     "height": 0.16,
                     "audio": "../config/audio/cow.mp3"
+                }
+            ]
+        },
+        {
+            "page": 28,
+            "hotspots": [
+                {
+                    "id": "thunder",
+                    "x": 0.04,
+                    "y": 0.74,
+                    "width": 0.14,
+                    "height": 0.11,
+                    "audio": "../config/audio/thunder.mp3"
+                },
+                {
+                    "id": "blender",
+                    "x": 0.21,
+                    "y": 0.80,
+                    "width": 0.15,
+                    "height": 0.13,
+                    "audio": "../config/audio/blender.mp3"
+                },
+                {
+                    "id": "plane",
+                    "x": 0.42,
+                    "y": 0.76,
+                    "width": 0.31,
+                    "height": 0.08,
+                    "audio": "../config/audio/plane.mp3"
+                },
+                {
+                    "id": "volcano",
+                    "x": 0.75,
+                    "y": 0.72,
+                    "width": 0.21,
+                    "height": 0.15,
+                    "audio": "../config/audio/volcano.mp3"
                 }
             ]
         }
