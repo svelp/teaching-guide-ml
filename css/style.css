@@ -380,23 +380,91 @@ canvas {
 }
 
 @media (max-width: 768px) {
+
+    /* =========================================
+       BUSCADOR DE PÁGINA - MÓVIL
+       ========================================= */
+
     .page-jump {
-        top: auto;
-        right: 12px;
-        bottom: 12px;
-        left: 12px;
-        width: auto;
-        padding: 12px;
-        border-radius: 16px;
+        position: fixed;
+
+        top: 8px;
+        right: 8px;
+        left: auto;
+        bottom: auto;
+
+        width: 145px !important;
+        max-width: calc(100vw - 16px);
+
+        padding: 7px !important;
+        margin: 0 !important;
+
+        border-radius: 10px;
+        z-index: 1000;
+
+        box-sizing: border-box;
     }
 
+    .page-jump-form {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Título pequeño */
+    .page-jump-label {
+        display: block;
+        margin: 0 0 4px !important;
+
+        font-size: 0.68rem !important;
+        line-height: 1 !important;
+    }
+
+    /* Input + botón en una sola línea */
     .page-jump-row {
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+
+        gap: 5px;
+
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .page-jump-input {
+        flex: 1;
+        min-width: 0;
+
+        width: auto !important;
+        height: 28px !important;
+
+        padding: 4px 7px !important;
+
+        font-size: 0.78rem !important;
+
+        box-sizing: border-box;
     }
 
     .page-jump-button {
-        width: 100%;
+        flex: 0 0 38px !important;
+
+        width: 38px !important;
+        height: 28px !important;
+
+        padding: 0 !important;
+
+        font-size: 0.7rem !important;
     }
+
+    /* En móvil no necesitamos mostrar este texto */
+    .page-jump-status {
+        display: none !important;
+    }
+
+
+    /* =========================================
+       RESTO DEL DISEÑO
+       ========================================= */
 
     .hero {
         min-height: 260px;
