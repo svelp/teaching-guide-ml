@@ -409,6 +409,43 @@
                     "audio": "../config/audio/pigeon-walking.mp3"
                 }
             ]
+        },
+        {
+            "page": 32,
+            "hotspots": [
+                {
+                    "id": "banging-table",
+                    "x": 0.06,
+                    "y": 0.59,
+                    "width": 0.18,
+                    "height": 0.18,
+                    "audio": "../config/audio/banging-table.mp3"
+                },
+                {
+                    "id": "close-door",
+                    "x": 0.30,
+                    "y": 0.65,
+                    "width": 0.18,
+                    "height": 0.18,
+                    "audio": "../config/audio/close-door.mp3"
+                },
+                {
+                    "id": "dog",
+                    "x": 0.54,
+                    "y": 0.59,
+                    "width": 0.18,
+                    "height": 0.18,
+                    "audio": "../config/audio/dog.mp3"
+                },
+                {
+                    "id": "slap",
+                    "x": 0.78,
+                    "y": 0.65,
+                    "width": 0.18,
+                    "height": 0.20,
+                    "audio": "../config/audio/slap.mp3"
+                }
+            ]
         }
     ]
 }
